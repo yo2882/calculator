@@ -39,10 +39,14 @@ function operate(){
 let mathButtons = document.querySelectorAll('.number,.operator,.equal')
 
 function changeNum(numElement){
-    if(parseFloat(firstNum) == 0){
-        return firstNum = numElement.textContent 
+    if(!operator){
+        parseFloat(firstNum) == 0 ? firstNum = numElement.textContent : firstNum += numElement.textContent
+        return
     }
-    return firstNum += numElement.textContent   
+    if(operator){
+        parseFloat(secondNum) == 0 ? secondNum = numElement.textContent : secondNum += numElement.textContent
+        return
+    } 
 }
 
 function changeOp(opElement){
