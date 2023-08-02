@@ -36,3 +36,16 @@ function operate(){
     }
 }
 
+let numButtons = document.querySelectorAll('.number')
+
+function changeNum(){
+    if(parseFloat(firstNum) == 0){
+        return firstNum = this.textContent 
+    }
+    return firstNum += this.textContent    
+}
+
+numButtons.forEach(numButton => {
+    numButton.addEventListener("click",changeNum)
+});
+
