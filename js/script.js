@@ -36,16 +36,30 @@ function operate(){
     }
 }
 
-let numButtons = document.querySelectorAll('.number')
+let mathButtons = document.querySelectorAll('.number,.operator,.equal')
 
-function changeNum(){
+function changeNum(numElement){
     if(parseFloat(firstNum) == 0){
-        return firstNum = this.textContent 
+        return firstNum = numElement.textContent 
     }
-    return firstNum += this.textContent    
+    return firstNum += numElement.textContent   
 }
 
-numButtons.forEach(numButton => {
-    numButton.addEventListener("click",changeNum)
-});
+function changeOp(opElement){
+    return operator = opElement.textContent 
+}
 
+function checkType(){
+    switch (true) {
+        case this.classList.contains('number'):
+            changeNum(this);
+            break;
+        case this.classList.contains('operator'):
+            changeOp(this);
+            break;
+    }
+}
+
+mathButtons.forEach(mathButton => {
+    mathButton.addEventListener("click",checkType)
+});
