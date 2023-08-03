@@ -45,6 +45,7 @@ function useResult(){
     if(calculated){
         firstNum = result;
     }
+    calculated = false
 }
 
 //function to reset all variable 
@@ -75,6 +76,9 @@ function changeNum(numElement){
 //change operator based on button pressed
 
 function changeOp(opElement){
+    if(calculated){
+        secondNum = 0;
+    }
     useResult();
     operator = opElement.textContent;
 }
