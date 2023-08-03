@@ -4,6 +4,7 @@ let operator = null
 let result = 0
 let calculated = false
 let operatorSelected = false
+let decimalPointAdded = false
 
 function plus (){
     result = parseFloat(firstNum)+parseFloat(secondNum);
@@ -38,6 +39,7 @@ function operate(){
     }
     operatorSelected = false;
     calculated = true;
+    decimalPointAdded = false;
 }
 
 //function to use past result in calculation
@@ -66,13 +68,30 @@ function changeNum(numElement){
         reset();
     }
     if(!operator){
-        parseFloat(firstNum) == 0 ? firstNum = numElement.value : firstNum += numElement.value;
+        firstNum === 0 && !decimalPointAdded ? firstNum = numElement.value : firstNum += numElement.value;
         return
     }
     if(operator){
-        parseFloat(secondNum) == 0 ? secondNum = numElement.value : secondNum += numElement.value;
-        return
+        secondNum === 0 && !decimalPointAdded ? secondNum = numElement.value : secondNum += numElement.value;
     } 
+}
+
+//add decimal if has not already been added
+
+function addDecimal(decimalElement){
+    if(calculated){
+        reset();
+    }
+    if(decimalPointAdded){
+        return
+    }
+    if(!operator){
+        firstNum += decimalElement.value;
+    }
+    if(operator){
+        secondNum += decimalElement.value;
+    }
+    decimalPointAdded = true; 
 }
 
 //change operator based on button pressed
@@ -87,6 +106,7 @@ function changeOp(opElement){
     useResult();
     operator = opElement.value;
     operatorSelected = true;
+    decimalPointAdded = false;
 }
 
 //run operate when equal is pressed
@@ -98,12 +118,15 @@ function runEqual(){
     console.log(`${firstNum} ${operator} ${secondNum} = ${result}`)
 }
 
-let mathButtons = document.querySelectorAll('.number,.operator,.equal')
+let mathButtons = document.querySelectorAll('.number,.decimal-point,.operator,.equal')
 
 function checkType(){
     switch (true) {
         case this.classList.contains('number'):
             changeNum(this);
+            break;
+        case this.classList.contains('decimal-point'):
+            addDecimal(this);
             break;
         case this.classList.contains('operator'):
             changeOp(this);
