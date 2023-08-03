@@ -1,10 +1,10 @@
-let firstNum = 0
-let secondNum = 0
-let operator = null
-let result = 0
-let calculated = false
-let operatorSelected = false
-let decimalPointAdded = false
+let firstNum = 0;
+let secondNum = 0;
+let operator = null;
+let result = 0;
+let calculated = false;
+let operatorSelected = false;
+let decimalPointAdded = false;
 
 function plus (){
     result = parseFloat(firstNum)+parseFloat(secondNum);
@@ -48,17 +48,17 @@ function useResult(){
     if(calculated){
         firstNum = result;
     }
-    calculated = false
+    calculated = false;
 }
 
 //function to reset all variable 
 function reset(){
-    firstNum = 0
-    secondNum = 0
-    operator = null
-    result = 0
-    calculated = false
-    operatorSelected = false
+    firstNum = 0;
+    secondNum = 0;
+    operator = null;
+    result = 0;
+    calculated = false;
+    operatorSelected = false;
 }
 
 //change firstNum or secondNum based on button pressed and if operator is selected or not
@@ -69,7 +69,6 @@ function changeNum(numElement){
     }
     if(!operator){
         firstNum === 0 && !decimalPointAdded ? firstNum = numElement.value : firstNum += numElement.value;
-        return
     }
     if(operator){
         secondNum === 0 && !decimalPointAdded ? secondNum = numElement.value : secondNum += numElement.value;
