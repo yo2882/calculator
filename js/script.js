@@ -64,11 +64,11 @@ function changeNum(numElement){
         reset();
     }
     if(!operator){
-        parseFloat(firstNum) == 0 ? firstNum = numElement.textContent : firstNum += numElement.textContent;
+        parseFloat(firstNum) == 0 ? firstNum = numElement.value : firstNum += numElement.value;
         return
     }
     if(operator){
-        parseFloat(secondNum) == 0 ? secondNum = numElement.textContent : secondNum += numElement.textContent;
+        parseFloat(secondNum) == 0 ? secondNum = numElement.value : secondNum += numElement.value;
         return
     } 
 }
@@ -80,7 +80,7 @@ function changeOp(opElement){
         secondNum = 0;
     }
     useResult();
-    operator = opElement.textContent;
+    operator = opElement.value;
 }
 
 //run operate when equal is pressed
