@@ -4,39 +4,40 @@ let operator = null
 let result = 0
 
 function plus (){
-    return parseFloat(firstNum)+parseFloat(secondNum);
+    result = parseFloat(firstNum)+parseFloat(secondNum);
 }
 
 function minus (){
-    return parseFloat(firstNum)-parseFloat(secondNum);
+    result = parseFloat(firstNum)-parseFloat(secondNum);
 }
 
 function multiply (){
-    return parseFloat(firstNum)*parseFloat(secondNum);
+    result = parseFloat(firstNum)*parseFloat(secondNum);
 }
 
 function divide (){
-    return parseFloat(firstNum)/parseFloat(secondNum);
+    result = parseFloat(firstNum)/parseFloat(secondNum);
 }
 
 function operate(){
     switch (operator) {
         case "+":
-            return result = plus()
+            plus()
             break;
         case "-":
-            return result = minus()
+            minus()
             break;    
         case "x":
-            return result = multiply()
+            multiply()
             break;
         case "÷":
-            return result = divide()
+            divide()
             break;  
     }
+    calculated = true
 }
 
-let mathButtons = document.querySelectorAll('.number,.operator,.equal')
+//change firstNum or secondNum based on button pressed and if operator is selected or not
 
 function changeNum(numElement){
     if(!operator){
@@ -49,9 +50,26 @@ function changeNum(numElement){
     } 
 }
 
+//change operator based on button pressed
+
 function changeOp(opElement){
     return operator = opElement.textContent 
 }
+
+//run operate when equal is pressed
+//if pressed without changing any variable calculate again using reult as first number
+
+let calculated = false
+
+function runEqual(){
+    if(calculated){
+        firstNum = result
+    }
+    operate()
+    console.log(`${firstNum} ${operator} ${secondNum} = ${result}`)
+}
+
+let mathButtons = document.querySelectorAll('.number,.operator,.equal')
 
 function checkType(){
     switch (true) {
@@ -60,6 +78,9 @@ function checkType(){
             break;
         case this.classList.contains('operator'):
             changeOp(this);
+            break;
+        case this.classList.contains('equal'):
+            runEqual(this);
             break;
     }
 }
