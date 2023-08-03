@@ -5,6 +5,7 @@ let result = 0;
 let calculated = false;
 let operatorSelected = false;
 let decimalPointAdded = false;
+let resultDisplay = 0;
 
 function plus (){
     result = parseFloat(firstNum)+parseFloat(secondNum);
@@ -39,7 +40,13 @@ function operate(){
     }
     operatorSelected = false;
     calculated = true;
+    resultDisplay = roundResult();
 }
+
+function roundResult(){
+    return Math.floor(result * 100) / 100
+}
+
 
 //function to use past result in calculation
 
@@ -114,7 +121,7 @@ function changeOp(opElement){
 function runEqual(){
     useResult();
     operate();
-    console.log(`${firstNum} ${operator} ${secondNum} = ${result}`)
+    console.log(`${firstNum} ${operator} ${secondNum} = ${resultDisplay}`)
 }
 
 let mathButtons = document.querySelectorAll('.number,.decimal-point,.operator,.equal')
