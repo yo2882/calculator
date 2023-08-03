@@ -19,6 +19,8 @@ function divide (){
     result = parseFloat(firstNum)/parseFloat(secondNum);
 }
 
+
+let calculated = false
 function operate(){
     switch (operator) {
         case "+":
@@ -37,6 +39,15 @@ function operate(){
     calculated = true
 }
 
+//function to use past result in calculation
+
+function useResult(){
+    if(calculated){
+        firstNum = result;
+        calculated = false
+    }
+}
+
 //change firstNum or secondNum based on button pressed and if operator is selected or not
 
 function changeNum(numElement){
@@ -53,18 +64,15 @@ function changeNum(numElement){
 //change operator based on button pressed
 
 function changeOp(opElement){
+    
     return operator = opElement.textContent 
 }
 
 //run operate when equal is pressed
 //if pressed without changing any variable calculate again using reult as first number
 
-let calculated = false
-
 function runEqual(){
-    if(calculated){
-        firstNum = result
-    }
+    useResult()
     operate()
     console.log(`${firstNum} ${operator} ${secondNum} = ${result}`)
 }
