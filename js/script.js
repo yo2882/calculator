@@ -39,7 +39,6 @@ function operate(){
     }
     operatorSelected = false;
     calculated = true;
-    decimalPointAdded = false;
 }
 
 //function to use past result in calculation
@@ -59,6 +58,7 @@ function reset(){
     result = 0;
     calculated = false;
     operatorSelected = false;
+    decimalPointAdded = false;
 }
 
 //change firstNum or secondNum based on button pressed and if operator is selected or not
