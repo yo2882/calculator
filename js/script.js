@@ -36,7 +36,7 @@ function operate(){
             divide()
             break;  
     }
-    calculated = true
+    calculated = true;
 }
 
 //function to use past result in calculation
@@ -44,19 +44,30 @@ function operate(){
 function useResult(){
     if(calculated){
         firstNum = result;
-        calculated = false
     }
+}
+
+//function to reset all variable 
+function reset(){
+    firstNum = 0
+    secondNum = 0
+    operator = null
+    result = 0
+    calculated = false
 }
 
 //change firstNum or secondNum based on button pressed and if operator is selected or not
 
 function changeNum(numElement){
+    if(calculated){
+        reset();
+    }
     if(!operator){
-        parseFloat(firstNum) == 0 ? firstNum = numElement.textContent : firstNum += numElement.textContent
+        parseFloat(firstNum) == 0 ? firstNum = numElement.textContent : firstNum += numElement.textContent;
         return
     }
     if(operator){
-        parseFloat(secondNum) == 0 ? secondNum = numElement.textContent : secondNum += numElement.textContent
+        parseFloat(secondNum) == 0 ? secondNum = numElement.textContent : secondNum += numElement.textContent;
         return
     } 
 }
@@ -64,16 +75,16 @@ function changeNum(numElement){
 //change operator based on button pressed
 
 function changeOp(opElement){
-    
-    return operator = opElement.textContent 
+    useResult();
+    operator = opElement.textContent;
 }
 
 //run operate when equal is pressed
 //if pressed without changing any variable calculate again using reult as first number
 
 function runEqual(){
-    useResult()
-    operate()
+    useResult();
+    operate();
     console.log(`${firstNum} ${operator} ${secondNum} = ${result}`)
 }
 
@@ -94,5 +105,5 @@ function checkType(){
 }
 
 mathButtons.forEach(mathButton => {
-    mathButton.addEventListener("click",checkType)
+    mathButton.addEventListener("click",checkType);
 });
