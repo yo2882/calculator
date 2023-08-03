@@ -2,6 +2,8 @@ let firstNum = 0
 let secondNum = 0
 let operator = null
 let result = 0
+let calculated = false
+let operatorSelected = false
 
 function plus (){
     result = parseFloat(firstNum)+parseFloat(secondNum);
@@ -19,8 +21,6 @@ function divide (){
     result = parseFloat(firstNum)/parseFloat(secondNum);
 }
 
-
-let calculated = false
 function operate(){
     switch (operator) {
         case "+":
@@ -36,6 +36,7 @@ function operate(){
             divide()
             break;  
     }
+    operatorSelected = false;
     calculated = true;
 }
 
@@ -55,6 +56,7 @@ function reset(){
     operator = null
     result = 0
     calculated = false
+    operatorSelected = false
 }
 
 //change firstNum or secondNum based on button pressed and if operator is selected or not
@@ -76,11 +78,15 @@ function changeNum(numElement){
 //change operator based on button pressed
 
 function changeOp(opElement){
+    if(operatorSelected){
+        runEqual();
+    }
     if(calculated){
         secondNum = 0;
     }
     useResult();
     operator = opElement.value;
+    operatorSelected = true;
 }
 
 //run operate when equal is pressed
