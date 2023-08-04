@@ -5,7 +5,6 @@ let result = 0;
 let calculated = false;
 let operatorSelected = false;
 let decimalPointAdded = false;
-let resultDisplay = 0;
 
 function plus (){
     result = parseFloat(firstNum)+parseFloat(secondNum);
@@ -47,13 +46,12 @@ function operate(){
     }
     operatorSelected = false;
     calculated = true;
-    resultDisplay = roundResult();
     //update display
-    displayedInput.textContent = resultDisplay;
+    displayedInput.textContent = roundResult(result);
 }
 
-function roundResult(){
-    return Math.floor(result * 100) / 100
+function roundResult(num){
+    return Math.floor(num * 100) / 100
 }
 
 //function to use past result in calculation
@@ -76,7 +74,8 @@ function reset(){
     operatorSelected = false;
     decimalPointAdded = false;
     //update display
-    displayedInput.textContent = firstNum;
+    displayedInput.textContent = 0;
+    displayedCalc.textContent = 0;
 }
 
 //change firstNum or secondNum based on button pressed and if operator is selected or not
@@ -111,11 +110,15 @@ function addDecimal(decimalElement){
     }
     if(!operator){
         firstNum += decimalElement.value;
+        //update display
         displayedInput.textContent = firstNum;
+        displayedCalc.textContent += decimalElement.value;
     }
     if(operator){
         secondNum += decimalElement.value;
+        //update display
         displayedInput.textContent = secondNum;
+        displayedCalc.textContent += decimalElement.value;
     }
     decimalPointAdded = true; 
 }
@@ -126,7 +129,7 @@ function changeOp(opElement){
     if(operatorSelected){
         runEqual();
         //update display
-        displayedCalc.textContent = result;
+        displayedCalc.textContent = roundResult(result);
     }
     if(calculated){
         secondNum = 0;
@@ -145,7 +148,7 @@ function changeOp(opElement){
 function runEqual(){
     useResult();
     operate();
-    displayedCalc.textContent = `${firstNum} ${operator} ${secondNum} = ${resultDisplay}`
+    displayedCalc.textContent = `${roundResult(firstNum)} ${operator} ${roundResult(secondNum)} = ${roundResult(result)}`
 }
 
 let mathButtons = document.querySelectorAll('button')
