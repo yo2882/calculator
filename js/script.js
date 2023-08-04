@@ -23,6 +23,10 @@ function divide (){
     result = parseFloat(firstNum)/parseFloat(secondNum);
 }
 
+function calculatePercentage(){
+    result = (parseFloat(firstNum)/parseFloat(secondNum))*100;
+}
+
 function operate(){
     switch (operator) {
         case "+":
@@ -36,6 +40,9 @@ function operate(){
             break;
         case "÷":
             divide()
+            break;  
+        case "%":
+            calculatePercentage()
             break;  
     }
     operatorSelected = false;
