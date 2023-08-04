@@ -48,6 +48,8 @@ function operate(){
     operatorSelected = false;
     calculated = true;
     resultDisplay = roundResult();
+    //update display
+    displayedInput.textContent = resultDisplay;
 }
 
 function roundResult(){
@@ -73,6 +75,8 @@ function reset(){
     calculated = false;
     operatorSelected = false;
     decimalPointAdded = false;
+    //update display
+    displayedInput.textContent = firstNum;
 }
 
 //change firstNum or secondNum based on button pressed and if operator is selected or not
@@ -83,10 +87,17 @@ function changeNum(numElement){
     }
     if(!operator){
         firstNum === 0 && !decimalPointAdded ? firstNum = numElement.value : firstNum += numElement.value;
+        //update display
+        displayedInput.textContent = firstNum;
+
     }
     if(operator){
         secondNum === 0 && !decimalPointAdded ? secondNum = numElement.value : secondNum += numElement.value;
+        //update display
+        displayedInput.textContent = secondNum; 
     } 
+    //update display
+    displayedCalc.textContent == "0" ? displayedCalc.textContent = numElement.value : displayedCalc.textContent += numElement.value;
 }
 
 //add decimal if has not already been added
@@ -100,9 +111,11 @@ function addDecimal(decimalElement){
     }
     if(!operator){
         firstNum += decimalElement.value;
+        displayedInput.textContent = firstNum;
     }
     if(operator){
         secondNum += decimalElement.value;
+        displayedInput.textContent = secondNum;
     }
     decimalPointAdded = true; 
 }
@@ -112,6 +125,8 @@ function addDecimal(decimalElement){
 function changeOp(opElement){
     if(operatorSelected){
         runEqual();
+        //update display
+        displayedCalc.textContent = result;
     }
     if(calculated){
         secondNum = 0;
@@ -120,6 +135,8 @@ function changeOp(opElement){
     operator = opElement.value;
     operatorSelected = true;
     decimalPointAdded = false;
+    //update display
+    displayedCalc.textContent += ` ${operator} `;
 }
 
 //run operate when equal is pressed
@@ -128,7 +145,7 @@ function changeOp(opElement){
 function runEqual(){
     useResult();
     operate();
-    console.log(`${firstNum} ${operator} ${secondNum} = ${resultDisplay}`)
+    displayedCalc.textContent = `${firstNum} ${operator} ${secondNum} = ${resultDisplay}`
 }
 
 let mathButtons = document.querySelectorAll('button')
@@ -156,3 +173,7 @@ function checkType(){
 mathButtons.forEach(mathButton => {
     mathButton.addEventListener("click",checkType);
 });
+
+//display the result and user input
+const displayedInput = document.querySelector(".display-input");
+const displayedCalc = document.querySelector(".display-calculation");
