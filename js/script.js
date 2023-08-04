@@ -47,7 +47,6 @@ function roundResult(){
     return Math.floor(result * 100) / 100
 }
 
-
 //function to use past result in calculation
 
 function useResult(){
@@ -58,6 +57,7 @@ function useResult(){
 }
 
 //function to reset all variable 
+
 function reset(){
     firstNum = 0;
     secondNum = 0;
@@ -124,7 +124,7 @@ function runEqual(){
     console.log(`${firstNum} ${operator} ${secondNum} = ${resultDisplay}`)
 }
 
-let mathButtons = document.querySelectorAll('.number,.decimal-point,.operator,.equal')
+let mathButtons = document.querySelectorAll('button')
 
 function checkType(){
     switch (true) {
@@ -139,6 +139,9 @@ function checkType(){
             break;
         case this.classList.contains('equal'):
             runEqual(this);
+            break;
+        case this.classList.contains('reset'):
+            reset();
             break;
     }
 }
