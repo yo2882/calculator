@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
 body{
@@ -16,12 +17,16 @@ body{
 
 /* layout structure */
 
+.header,.footer{
+  margin: 24px 0;
+}
+
 .content{
   width: 400px;
 }
 
 .calculator{
-  padding: 12px;
+  padding: 18px;
 }
 
 .display-box{
@@ -59,8 +64,19 @@ button{
 
 /* style */
 
+@import url('https://fonts.cdnfonts.com/css/helvetica-neue-5');
+
+.header{
+  font-size: 48px;
+}
+
+.footer{
+  font-size: 18px;
+}
+
 .calculator{
   background-color: black;
+  border-radius: 18px;
 }
 
 p{
@@ -72,8 +88,10 @@ p{
 
 .display-box{
   background-color: rgb(68, 68, 68);
+  border-radius: 9px;
 }
 
 button{
   font-size: 18px;
+  border-radius: 9px;
 }
