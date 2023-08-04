@@ -128,11 +128,11 @@ function addDecimal(decimalElement){
 function changeOp(opElement){
     if(operatorSelected){
         runEqual();
-        //update display
-        displayedCalc.textContent = roundResult(result);
     }
     if(calculated){
         secondNum = 0;
+        //update display
+        displayedCalc.textContent = roundResult(result);
     }
     useResult();
     operator = opElement.value;
