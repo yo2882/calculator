@@ -26,6 +26,10 @@ body{
 
 .display-box{
   margin: 0 0 9px;
+  min-height: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .button-box{
@@ -60,10 +64,16 @@ button{
 }
 
 p{
-  font-size: 36px;
-  color: rgb(187, 214, 187);
+  font-size: 27px;
+  text-align: end;
+  margin: 6px;
+  color: rgb(159, 204, 159);
 }
 
 .display-box{
   background-color: rgb(68, 68, 68);
+}
+
+button{
+  font-size: 18px;
 }
