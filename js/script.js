@@ -148,6 +148,7 @@ function changeOp(opElement){
 function runEqual(){
     useResult();
     operate();
+    if(!operator){return displayedCalc.textContent = `${roundResult(result)}`}
     displayedCalc.textContent = `${roundResult(firstNum)} ${operator} ${roundResult(secondNum)} = ${roundResult(result)}`
 }
 
